@@ -1,0 +1,16 @@
+Organizations - CMR Bloodbank(Pravin), MLR Bloodbank(Dinesh)
+Hospitals - Nims Hospitals(Sai), Care Hospitals(Vivek)
+Donars - Arjun, Sahil, Akshay, Shanil, Reena
+
+
+for Org:
+    Add Donations - Inventorty In
+    Add Hospitals - Inventorty Out
+    List Donars data and History
+    List Hospitals data and History Dashboard
+
+for Hospitals:
+    List Organizations data and History
+
+for Donars:
+    List Organizations, Donations data.
