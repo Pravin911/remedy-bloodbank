@@ -3,13 +3,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Button */
-button{
+
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  10% {
+    background-position: 0% 50%;
+  }
+  80% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+* {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+button {
   border-radius: 0 !important;
   box-shadow: none !important;
   height: 40px !important;
 }
 
-*{
-  font-family: 'Montserrat', sans-serif;
+input, textarea {
+  min-height: 40px !important;
+  border: 1px solid #8f9398 !important;
+  border-radius: 2px !important;
+}
+
+input.focus, textarea.focus {
+  outline: none;
+  box-shadow: none !important;
+}
+
+
+.ant-form-item {
+  margin-bottom: 0px !important;
+}
+
+a:hover {
+  color: #00a9ff !important;
 }
