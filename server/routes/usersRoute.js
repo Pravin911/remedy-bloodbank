@@ -136,4 +136,32 @@ router.get('/get-all-donars', authMiddleware, async (req, res) => {
     }
 });
 
+// get all unique Hospitals for an organization
+router.get('/get-all-hospitals', authMiddleware, async (req, res) => {
+    try {
+        const organization = new mongoose.Types.ObjectId(req.body.userId);
+        const uniqueHospitalsIds = await Inventory.distinct(
+            'hospital',
+            {
+                organization,
+            },
+        );
+
+        const hospitals = await User.find({
+            _id: { $in: uniqueHospitalsIds },
+        });
+        console.log(uniqueHospitalsIds);
+        return res.send({
+            success: true,
+            message: 'Hospitals fetched successfully',
+            data: hospitals,
+        });
+    } catch (error) {
+        return res.send({
+            success: false,
+            message: error.message,
+        });
+    }
+});
+
 module.exports = router;
