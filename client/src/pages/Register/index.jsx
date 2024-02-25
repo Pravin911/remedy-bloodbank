@@ -1,67 +1,81 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, Radio, message } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import OrgHospitalForm from '../../components/OrgHospitalForm';
 import { RegisterUser } from '../../apis/users';
+import { useDispatch } from 'react-redux';
+import { SetLoading } from '../../redux/loadersSlice';
+import { getAntdInputValidation } from '../../utils/helpers';
 
 export default function Register() {
+  const [type, setType] = useState('donar'); // Corrected the declaration of useState
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [ type, setType ] = React.useState('donar');
-  const onFinish = async(values) => {
+  const onFinish = async (values) => {
     try {
+      dispatch(SetLoading(true));
       const response = await RegisterUser({
         ...values,
         userType: type,
       });
-      if(response.success) {
+      dispatch(SetLoading(false));
+      if (response.success) {
         message.success(response.message);
       } else {
         throw new Error(response.message);
       }
     } catch (error) {
+      dispatch(SetLoading(false));
       message.error(error.message);
     }
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/login');
+    }
+  }, []); // Added empty dependency array to useEffect
 
   return (
     <div className='flex h-screen items-center justify-center'>
       <Form layout="vertical" className="bg-white rounded shadow grid grid-cols-2 p-5 gap-5 w-1/2"
         onFinish={onFinish}
-        >
+      >
         <h1 className="col-span-2 uppercase font-bold text-2xl">
           <span className="text-blue-300">{type.toUpperCase()} - Register </span>
           <hr />
         </h1>
 
         <Radio.Group onChange={(e) => setType(e.target.value)} value={type}
-          className='col-span-2'>
+          className='col-span-2'
+        >
           <Radio value="donar">Donar</Radio>
           <Radio value="hospital">Hospital</Radio>
-          <Radio value="organisation">Organisation</Radio>
+          <Radio value="organization">Organization</Radio>
         </Radio.Group>
 
         {type === 'donar' && (
           <>
-        
-        <Form.Item label="Name" name="name">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Email" name="email">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Phone"  name="phone">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Password" name="password">
-          <Input type="password" />
-        </Form.Item>
-        </>
+            <Form.Item label="Name" name="name" rules={getAntdInputValidation()}>
+              <Input />
+            </Form.Item>
+            <Form.Item label="Email" name="email" rules={getAntdInputValidation()}>
+              <Input />
+            </Form.Item>
+            <Form.Item label="Phone" name="phone" rules={getAntdInputValidation()}>
+              <Input />
+            </Form.Item>
+            <Form.Item label="Password" name="password" rules={getAntdInputValidation()}>
+              <Input type='password' />
+            </Form.Item>
+          </>
         )}
 
         {type !== 'donar' && <OrgHospitalForm type={type} />}
 
         <Button type="primary" block className='col-span-2'
-         htmlType='submit'
+          htmlType='submit'
         >
           Register
         </Button>

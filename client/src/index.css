@@ -5,10 +5,7 @@
 @tailwind utilities;
 
 body{
-  background: #1e3c72;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2a5298, #1e3c72); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background-color: #e7f1f6 !important;
 }
 
 * {
@@ -19,12 +16,14 @@ button {
   border-radius: 0 !important;
   box-shadow: none !important;
   height: 40px !important;
+  border: 1px solid #8f9398 !important;
 }
 
-input, textarea {
+input, textarea, select {
   min-height: 40px !important;
   border: 1px solid #8f9398 !important;
   border-radius: 2px !important;
+  width: 100% !important;
 }
 
 input.focus, textarea.focus {
@@ -39,4 +38,24 @@ input.focus, textarea.focus {
 
 a:hover {
   color: #00a9ff !important;
+}
+
+i{
+  font-size: 18px !important;
+}
+
+.ant-form-item-label{
+  padding: 0 !important;
+}
+
+table{
+  border: 1px !important;
+  border-style: solid !important;
+  border-color: #8f9398 !important;
+  border-radius: 2px !important;
+}
+
+html{
+  scroll-behavior: smooth !important;
+  
 }
