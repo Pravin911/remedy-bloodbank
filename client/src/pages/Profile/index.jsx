@@ -1,33 +1,67 @@
-import { Tabs } from 'antd';
-import React from 'react'
-import { useSelector } from 'react-redux';
-import Inventory from './Inventory';
-import Donars from './Donars';
-import Hospitals from './Hospitals';
+import { Tabs } from "antd";
+import React from "react";
+import { useSelector } from "react-redux";
+import Inventory from "./Inventory";
+import Donars from "./Donars";
+import Hospitals from "./Hospitals";
+import Organizations from "./Organizations";
+import InventoryTable from "../../components/InventoryTable";
 
-export default function Profile() {
-    const {currentUser} = useSelector(state => state.users);
+function Profile() {
+  const { currentUser } = useSelector((state) => state.users);
   return (
     <div>
       <Tabs>
-        {currentUser.userType === 'organization' && 
-        <>
+        {currentUser.userType === "organization" && (
+          <>
             <Tabs.TabPane tab="Inventory" key="1">
-                <Inventory />
+              <Inventory />
             </Tabs.TabPane>
-
             <Tabs.TabPane tab="Donars" key="2">
-                <Donars />
+              <Donars />
             </Tabs.TabPane>
-
             <Tabs.TabPane tab="Hospitals" key="3">
-                <Hospitals />
+              <Hospitals />
             </Tabs.TabPane>
+          </>
+        )}
 
-        </>
-        }
+        {currentUser.userType === "donar" && (
+          <>
+            <Tabs.TabPane tab="Donations" key="4">
+              <InventoryTable
+                filters={{
+                  inventoryType: "in",
+                  donar: currentUser._id,
+                }}
+                userType="donar"
+              />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Organizations" key="5">
+              <Organizations userType="donar" />
+            </Tabs.TabPane>
+          </>
+        )}
+
+        {currentUser.userType === "hospital" && (
+          <>
+            <Tabs.TabPane tab="Expenditure" key="6">
+              <InventoryTable
+                filters={{
+                  inventoryType: "out",
+                  hospital: currentUser._id,
+                }}
+                userType="hospital"
+              />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Organizations" key="7">
+              <Organizations userType="hospital" />
+            </Tabs.TabPane>
+          </>
+        )}
       </Tabs>
     </div>
-  )
+  );
 }
 
+export default Profile;

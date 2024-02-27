@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetLoading } from "../../../redux/loadersSlice";
 import { AddInventory } from "../../../apis/inventory";
 
+
 function InventoryForm({ open, setOpen, reloadData }) {
   const { currentUser } = useSelector((state) => state.users);
   const [form] = Form.useForm();
@@ -65,7 +66,7 @@ function InventoryForm({ open, setOpen, reloadData }) {
           rules={getAntdInputValidation()}
         >
           <select name="" id="">
-            <option value="">select blood group</option>
+            <option value="any">Any</option>
             <option value="a+">A+</option>
             <option value="a-">A-</option>
             <option value="b+">B+</option>

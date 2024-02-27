@@ -6,11 +6,8 @@ export const AddInventory = (data) => {
 
 export const GetInventory = () => {
   return axiosInstance("get", "/api/inventory/get");
-}
+};
 
-export const GetAllDonarsOfAnOrganization = () => {
-  return axiosInstance("get", "/api/users/get-all-donars");
-}
-export const GetAllHospitalsOfAnOrganization = () => {
-  return axiosInstance("get", "/api/users/get-all-hospitals");
+export const GetInventoryWithFilters = (filters , limit) => {
+  return axiosInstance("post", "/api/inventory/filter", {filters , limit});
 }

@@ -28,7 +28,7 @@ export default function Login() {
       }
     } catch (error) {
       dispatch(SetLoading(false));
-      message.error(error.message);
+      message.error('User is not match with ' + type);
     }
   }
 
