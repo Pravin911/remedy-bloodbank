@@ -44,7 +44,7 @@ export default function Login() {
         onFinish={onFinish}
         >
         <h1 className="col-span-2 uppercase font-bold text-2xl">
-          <span className="text-blue-300">{type.toUpperCase()} - Login </span>
+          <span className="text-primary">{type.toUpperCase()} - Login </span>
           <hr />
         </h1>
 
@@ -67,7 +67,7 @@ export default function Login() {
         >
           Login
         </Button>
-        <Link to="/register" className='col-span-2 text-center text-blue-500 hover:text-blue-300'>Don't have an account? Register</Link>
+        <Link to="/register" className='col-span-2 text-center text-blue-500 hover:text-blue-700'>Don't have an account? Register</Link>
       </Form>
     </div>
   )

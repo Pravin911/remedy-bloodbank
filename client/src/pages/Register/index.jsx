@@ -43,7 +43,7 @@ export default function Register() {
         onFinish={onFinish}
       >
         <h1 className="col-span-2 uppercase font-bold text-2xl">
-          <span className="text-blue-300">{type.toUpperCase()} - Register </span>
+          <span className="text-primary">{type.toUpperCase()} - Register </span>
           <hr />
         </h1>
 

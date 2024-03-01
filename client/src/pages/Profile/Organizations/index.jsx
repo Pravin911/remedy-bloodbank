@@ -84,9 +84,8 @@ function Organizations({userType}) {
         <Modal 
         title={`${userType === 'donar' ? 'Donar History' : 'Hospital History'} In ${selectedOrganization?.organizationName}`}
         centered
-        open={showHistoryModel}
-        onClose={() => setShowHistoryModel(false)}
-        onCancel={() => setShowHistoryModel(false)} // Changed from "onClose" to "onCancel"
+        visible={showHistoryModel} // Changed from "open" to "visible"
+        onCancel={() => setShowHistoryModel(false)}
         width={1000}
         >
         <InventoryTable filters={{ 

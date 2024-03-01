@@ -16,9 +16,9 @@ root.render(
       theme={{
         token: {
           // Seed Token
-          colorPrimary: '#3876BF',
-          colorBorder: '#3876BF',
-          borderRadius: 2,
+          colorPrimary: '#D24545',
+          colorBorder: '#D24545',
+          borderRadius: 5,
         },
       }}
     >

@@ -41,7 +41,7 @@ function ProtectedPage({ children }) {
     currentUser && (
       <div>
         {/* Header */}
-        <div className='p-2 md:p-4 flex justify-between items-center bg-primary text-white rounded-md'>
+        <div className='p-2 md:p-4 flex justify-between items-center bg-primary text-white rounded-md mx-5 rounded-b-md mt-2 mb-3'>
           <div>
             <h1 className='text-xl md:text-2xl uppercase cursor-pointer' onClick={() => navigate('/')}>Remedy Blood Bank</h1>
             <span className='text-xs md:text-sm font-bold'>{currentUser.userType.toUpperCase()}</span>
@@ -67,7 +67,7 @@ function ProtectedPage({ children }) {
         </div>
   
         {/* Body */}
-        <div className='px-5 py-2'>{children}</div>
+        <div className='px-5 py-tai'>{children}</div>
       </div>
     )
   );
