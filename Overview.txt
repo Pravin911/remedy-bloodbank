@@ -11,3 +11,6 @@ for Org:
 
 for Hospitals:
     List Organizations data and History
+
+for Donars:
+    List Organizations, Donations data.
