@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { GetInventoryWithFilters } from '../apis/inventory';
 import { useDispatch } from 'react-redux';
 import { getDateFormat } from '../utils/helpers';
@@ -7,8 +7,8 @@ import { SetLoading } from '../redux/loadersSlice';
 
 function InventoryTable({ filters, userType, limit }) {
   const [data, setData] = React.useState([]);
-  const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
   const columns = [
     {
       title: "Inventory Type",
@@ -45,19 +45,14 @@ function InventoryTable({ filters, userType, limit }) {
     },
   ];
 
-  // change columns for hospital or donor
+  // Adjust columns for hospital or donor
   if (userType !== "organization") {
-    // remove inventory type column
-    columns.splice(0, 1);
-
-    // change reference column to organization name
-    columns[2].title = "Organization Name";
-
-    // date column should be renamed taken date
-    columns[3].title = userType === "hospital" ? "Taken Date" : "Donated Date";
+    columns.splice(0, 1); // Remove "Inventory Type" column
+    columns[2].title = "Organization Name"; // Update reference column title
+    columns[3].title = userType === "hospital" ? "Taken Date" : "Donated Date"; // Update date column title
   }
 
-  const getData = async () => {
+  const getData = React.useCallback(async () => {
     try {
       dispatch(SetLoading(true));
       const response = await GetInventoryWithFilters(filters, limit);
@@ -71,11 +66,12 @@ function InventoryTable({ filters, userType, limit }) {
       message.error(error.message);
       dispatch(SetLoading(false));
     }
-  };
+  }, [dispatch, filters, limit]);
 
   React.useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
+
   return (
     <div>
       <Table columns={columns} dataSource={data} className="mt-3" />
