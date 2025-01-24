@@ -35,7 +35,7 @@ function ProtectedPage({ children }) {
     } else {
       navigate('/login');
     }
-  }, [getCurrentUser, navigate]);
+  }, []);
 
   return (
     currentUser && (
