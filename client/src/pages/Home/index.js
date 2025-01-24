@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SetLoading } from '../../redux/loadersSlice';
 import {  message } from 'antd';
 import { GetAllBloodGroupInventory } from '../../apis/dashboard';
-import { getLoggedInUserName } from '../../utils/helpers';
 import InventoryTable from '../../components/InventoryTable';
 
 export default function Home() {
