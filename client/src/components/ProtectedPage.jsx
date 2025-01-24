@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { GetCurrentUser } from '../apis/users';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ function ProtectedPage({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const getCurrentUser = async () => {
+  const getCurrentUser = useCallback(async () => {
     try {
       dispatch(SetLoading(true));
       const response = await GetCurrentUser();
@@ -27,7 +27,7 @@ function ProtectedPage({ children }) {
       dispatch(SetLoading(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch]); // Added dispatch as a dependency
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
